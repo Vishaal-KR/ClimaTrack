@@ -27,57 +27,58 @@ async function fetchWeather(location = null) {
         document.getElementById('temperature').innerHTML = `${weatherData.list[0].main.temp}&deg;C`;
         document.getElementById('description').textContent = weatherData.list[0].weather[0].description;
         document.getElementById('humidity').textContent = `Humidity: ${weatherData.list[0].main.humidity}% | Wind: ${weatherData.list[0].wind.speed} kph`;
-
         const forecastEl = document.getElementById("forecast");
 
-let displayedDays = 0; // Counter for the number of days displayed
-const today = new Date().toLocaleDateString(); // Get today's date
+        let displayedDays = 0; // Counter for the number of days displayed
+        const today = new Date().toLocaleDateString(); // Get today's date
 
-for (let i = 0; i < weatherData.list.length; i++) {
-  const weatherMain = weatherData.list[i].weather[0].main;
-  const temperature = weatherData.list[i].main.temp;
-  const date = new Date(weatherData.list[i].dt_txt).toLocaleDateString(); // Get the date for each entry
+        forecastEl.innerHTML = "";
 
-  // Skip if it's today (we only want future days)
-  if (date === today) {
-    continue;
-  }
+        for (let i = 0; i < weatherData.list.length; i++) {
+            const weatherMain = weatherData.list[i].weather[0].main;
+            const temperature = weatherData.list[i].main.temp;
+            const date = new Date(weatherData.list[i].dt_txt).toLocaleDateString(); // Get the date for each entry
 
-  // Only display 5 days after today, skipping duplicates
-  if (displayedDays === 5) {
-    break;
-  }
+            // Skip if it's today (we only want future days)
+            if (date === today) {
+                continue;
+            }
 
-  // Add the first weather entry of a new day to the display
-  if (i === 0 || new Date(weatherData.list[i - 1].dt_txt).toLocaleDateString() !== date) {
-    forecastEl.innerHTML += `<div>${date}<br>${getWeatherIcon(weatherMain)} ${temperature}&deg;C</div>`;
-    displayedDays++;
-  }
-}
+            // Only display 5 days after today, skipping duplicates
+            if (displayedDays === 5) {
+                break;
+            }
 
-// Function to get weather icons
-function getWeatherIcon(weatherMain) {
-  switch (weatherMain) {
-    case "Clear":
-      return "☀️";
-    case "Clouds":
-      return "☁️";
-    case "Rain":
-      return "🌧️";
-    case "Thunderstorm":
-      return "⛈️";
-    case "Snow":
-      return "❄️";
-    case "Drizzle":
-      return "🌦️";
-    case "Mist":
-    case "Fog":
-    case "Haze":
-      return "🌫️";
-    default:
-      return "🌡️";
-  }
-}
+            // Add the first weather entry of a new day to the display
+            if (i === 0 || new Date(weatherData.list[i - 1].dt_txt).toLocaleDateString() !== date) {
+                forecastEl.innerHTML += `<div>${date}<br>${getWeatherIcon(weatherMain)} ${temperature}&deg;C</div>`;
+                displayedDays++;
+            }
+        }
+
+        // Function to get weather icons
+        function getWeatherIcon(weatherMain) {
+            switch (weatherMain) {
+                case "Clear":
+                    return "☀️";
+                case "Clouds":
+                    return "☁️";
+                case "Rain":
+                    return "🌧️";
+                case "Thunderstorm":
+                    return "⛈️";
+                case "Snow":
+                    return "❄️";
+                case "Drizzle":
+                    return "🌦️";
+                case "Mist":
+                case "Fog":
+                case "Haze":
+                    return "🌫️";
+                default:
+                    return "🌡️";
+            }
+        }
 
     }
     catch (error) {
