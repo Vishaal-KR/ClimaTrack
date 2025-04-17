@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimaTrack</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+    <h1 class="title"></h1>
+    <div class="search-box">
+        <input type="text" id="location-input" placeholder="Enter location">
+        <button onclick="fetchWeather()">Search</button>
+        <button onclick="getUserLocation()">📍 Auto Location</button>
+    </div>
+    <div class="weather-container">
+        <h2 id="location">Enter a location</h2>
+        <div class="temperature" id="temperature">--&deg;C</div>
+        <div class="weather-info" id="description">--</div>
+        <div class="weather-info" id="humidity">--</div>
+        <div class="forecast" id="forecast"></div>
+        <div id="error-message" style="color: red; display: none;">Error fetching weather. Check the location.</div>
+    </div>
+</body>
+
+</html>

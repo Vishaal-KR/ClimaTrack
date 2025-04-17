@@ -1,0 +1,131 @@
+:root {
+    --light-bg: #f0f8ff;
+    --light-text: #333;
+    --dark-bg: #121212;
+    --dark-text: #fff;
+    --card-bg: rgba(255, 255, 255, 0.2);
+    --shadow: rgba(0, 0, 0, 0.1);
+    --primary: #007BFF;
+    --border-radius: 8px;
+    --input-light: #FFFFFF;
+    --input-dark: #d3d3d3;
+    --button-light: #007BFF;
+    --button-dark: #0056b3;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.weather-container {
+    width: 80%;
+    max-width: 500px;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px var(--shadow);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: var(--primary);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.temperature {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.weather-info {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.forecast {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.forecast div {
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    margin: 5px;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    padding: 10px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    box-shadow: 0px 4px 10px var(--shadow);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    box-shadow: 0px 4px 8px var(--shadow);
+}
+
+input {
+    padding: 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ccc;
+    width: 250px;
+    outline: none;
+    background-color: var(--input-light);
+    color: var(--light-text);
+}
+
+.dark-mode input {
+    background-color: var(--input-dark);
+    color: var(--dark-text);
+    border: 1px solid #555;
+}
+
+button {
+    padding: 12px;
+    border-radius: var(--border-radius);
+    border: none;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
