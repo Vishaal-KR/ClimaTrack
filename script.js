@@ -30,43 +30,55 @@ async function fetchWeather(location = null) {
 
         const forecastEl = document.getElementById("forecast");
 
-        for (let i = 0; i < 5; i++) {
-            const weatherMain = weatherData.list[i].weather[0].main;
-            const temperature = weatherData.list[i].main.temp;
-            const date = new Date(weatherData.list[i].dt_txt).toLocaleDateString();
+let displayedDays = 0; // Counter for the number of days displayed
+const today = new Date().toLocaleDateString(); // Get today's date
 
-            // Map weather conditions to emojis
-            let weatherIcon = "🌦️"; // default
-            switch (weatherMain) {
-                case "Clear":
-                    weatherIcon = "☀️";
-                    break;
-                case "Clouds":
-                    weatherIcon = "☁️";
-                    break;
-                case "Rain":
-                    weatherIcon = "🌧️";
-                    break;
-                case "Thunderstorm":
-                    weatherIcon = "⛈️";
-                    break;
-                case "Snow":
-                    weatherIcon = "❄️";
-                    break;
-                case "Drizzle":
-                    weatherIcon = "🌦️";
-                    break;
-                case "Mist":
-                case "Fog":
-                case "Haze":
-                    weatherIcon = "🌫️";
-                    break;
-                default:
-                    weatherIcon = "🌡️";
-            }
+for (let i = 0; i < weatherData.list.length; i++) {
+  const weatherMain = weatherData.list[i].weather[0].main;
+  const temperature = weatherData.list[i].main.temp;
+  const date = new Date(weatherData.list[i].dt_txt).toLocaleDateString(); // Get the date for each entry
 
-            forecastEl.innerHTML += `<div>${date}<br>${weatherIcon} ${temperature}&deg;C</div>`;
-        }
+  // Skip if it's today (we only want future days)
+  if (date === today) {
+    continue;
+  }
+
+  // Only display 5 days after today, skipping duplicates
+  if (displayedDays === 5) {
+    break;
+  }
+
+  // Add the first weather entry of a new day to the display
+  if (i === 0 || new Date(weatherData.list[i - 1].dt_txt).toLocaleDateString() !== date) {
+    forecastEl.innerHTML += `<div>${date}<br>${getWeatherIcon(weatherMain)} ${temperature}&deg;C</div>`;
+    displayedDays++;
+  }
+}
+
+// Function to get weather icons
+function getWeatherIcon(weatherMain) {
+  switch (weatherMain) {
+    case "Clear":
+      return "☀️";
+    case "Clouds":
+      return "☁️";
+    case "Rain":
+      return "🌧️";
+    case "Thunderstorm":
+      return "⛈️";
+    case "Snow":
+      return "❄️";
+    case "Drizzle":
+      return "🌦️";
+    case "Mist":
+    case "Fog":
+    case "Haze":
+      return "🌫️";
+    default:
+      return "🌡️";
+  }
+}
+
     }
     catch (error) {
         document.getElementById('error-message').textContent = error.message;
