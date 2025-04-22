@@ -6,7 +6,6 @@
 
 ## 📸 Preview
 
-**See Live** : https://vishaal-kr.github.io/ClimaTrack/
 
 ![ClimaTrack UI](https://github.com/user-attachments/assets/d36bfaab-6917-425b-b157-c304c6894f3e)
 
