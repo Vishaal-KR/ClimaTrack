@@ -6,6 +6,8 @@
 
 ## 📸 Preview
 
+**See Live** : https://vishaal-kr.github.io/ClimaTrack/
+
 ![ClimaTrack UI](https://github.com/user-attachments/assets/d36bfaab-6917-425b-b157-c304c6894f3e)
 
 ---
@@ -37,7 +39,7 @@
 ```bash
 git clone https://github.com/yourusername/climatrack.git
 
-2. **Navigate to the project folder:**
+**2. Navigate to the project folder:**
 ```bash
 cd climatrack
 
